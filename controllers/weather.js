@@ -20,7 +20,22 @@ exports.getWeatherByCity = async (req, res) => {
     res.status(error.response?.status || 500).json({ error: errorMessage });
   }
 };
+exports.getNews = async (req, res) => {
+  const { city } = req.params;
 
+  try {
+    const response = await axios.get(
+      "https://newsapi.org/v2/everything?q=weather&apiKey=009e4b71f1244220ae3cc8b35707124a"
+    );
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("News API Error:", error.response?.data || error.message);
+
+    const errorMessage = error.response?.data?.message || "Error fetching News data";
+    res.status(error.response?.status || 500).json({ error: errorMessage });
+  }
+};
 // Fetch weather forecast (5 days, every 3 hours) by city name
 exports.getWeatherForecastByCity = async (req, res) => {
   const { city } = req.params;

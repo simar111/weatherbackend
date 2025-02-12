@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Fetch current weather by city name
 router.get("/city/:city", weatherController.getWeatherByCity);
-
+router.get("/news",weatherController.getNews);
 // Fetch 5-day weather forecast by city name
 router.get("/forecast/:city", weatherController.getWeatherForecastByCity);
 
